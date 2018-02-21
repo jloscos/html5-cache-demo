@@ -1,0 +1,19 @@
+﻿@model IEnumerable<RSSFeedCacheWebApp.Models.Article>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>.NET Blog</h2>
+
+<div class="container-fluid">
+    @foreach(var item in Model)
+    {
+    <div class="article">
+        <h4 class="article-title" data-id="@item.Id"><a href="#">@item.Title</a></h4>
+        <span>publié le @item.DatePublished.ToString("dd/MM/yyyy HH:mm:ss")</span>
+        <span> par @item.Creator</span>
+        <div class="description">@Html.Raw(item.Description)</div>
+        <div class="content"></div>
+    </div>
+    }
+</div>
