@@ -47,6 +47,7 @@ namespace RSSFeedCacheWebApp.Controllers
 
             return Content(sb.ToString(), "text/cache-manifest");
         }
+
         public IActionResult Index()
         {
             return View();

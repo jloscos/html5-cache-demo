@@ -58,11 +58,11 @@ namespace RSSFeedCacheWebApp.Services
             regex = new Regex("<a[^>]+>Read more</a>");
             a.Description = regex.Replace(a.Description, "");
 
-            regex = new Regex(@"src=""(https?://[^""]+)""", RegexOptions.Multiline);
+            regex = new Regex(@"(<img[^>])src=""(https?://[^""]+)""", RegexOptions.Multiline);
             foreach (Match match in regex.Matches(a.Content))
             {
-                var url = $"/Home/Resource?ResourceId={match.Groups[1].Value}";
-                a.Content = a.Content.Replace(match.Value, $@"src=""{url}""");
+                var url = $"/Home/Resource?ResourceId={match.Groups[2].Value}";
+                a.Content = a.Content.Replace(match.Value, $@"{match.Groups[1].Value}src=""{url}""");
                 a.ResourcesUrl.Add(url);
             }
             return a;
